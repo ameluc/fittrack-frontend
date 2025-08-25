@@ -1,12 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>FitTrack - Your Personal Fitness Companion</title>
+
+        <link rel="preconnect" href="https://rsms.me/">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     </head>
-    <body class="relative z-0 h-[100vh] w-[100vw] flex flex-col">
-        <div class="relative z-0 h-auto w-full flex flex-col items-center justify-center" id="root"></div>
+    <body class="
+        scroll-smooth
+        w-[100vw]
+        h-[100vh]
+        bg-[#f9fafb]
+        font-[inter]
+        font-normal
+        text-base
+        text-gray-600
+        dark:bg-gray-800
+        dark:text-gray-100">
+        <div id="root"></div>
         <script type="module" src="/src/main.tsx"></script>
     </body>
   </html>
