@@ -5,8 +5,9 @@ interface InputProps
     inputType?: string,
     placeholder?: string,
     entry: string,
-    onEntry: (event: React.ChangeEvent<HTMLInputElement>) => void
-    required?: boolean
+    required?: boolean,
+    onEntry: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    ref?: React.Ref<HTMLInputElement>,
 };
 
 function InputField({
@@ -16,7 +17,8 @@ function InputField({
     placeholder="",
     entry,
     onEntry,
-    required } : InputProps)
+    required,
+    ref } : InputProps)
 {
     return (<input
         className={ className }
@@ -27,6 +29,7 @@ function InputField({
         value={ entry }
         onChange={ onEntry }
         required={ required }
+        ref={ ref }
     />);
 }
 

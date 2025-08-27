@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Outlet } from "react-router";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 
 function App()
 {
+    const [ theme, setTheme ] = useState(localStorage.getItem("theme"));
+
     return (<>
         <NavBar className="
             sticky
@@ -13,8 +16,6 @@ function App()
             h-auto
             mx-auto
             px-4
-            border-2
-            border-gray-300/20
             rounded-3xl
             bg-gray-50
             shadow-md
@@ -23,7 +24,7 @@ function App()
             items-center
             justify-center
             dark:bg-sky-800" />
-        <Outlet />
+        <Outlet context={{ theme, setTheme }} />
         <Footer className="
             w-full
             h-auto
