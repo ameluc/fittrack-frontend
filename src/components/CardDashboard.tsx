@@ -4,12 +4,15 @@ import type { JSX } from "react";
 interface CardProps
 {
     className?: string,
-    sectionTitle?: string,
-    sectionElements?: JSX.Element
+    sectionElements?: JSX.Element,
+    sectionTitle?: string
 };
 
 
-export default function CardDashboard({ className, sectionTitle } : CardProps) : JSX.Element
+export default function CardDashboard({ className, sectionElements, sectionTitle } : CardProps) : JSX.Element
 {
-    return (<></>);
+    return (<div className={ className }>
+        <h2>{ sectionTitle }</h2>
+        <div className="">{ sectionElements }</div>
+    </div>);
 }
