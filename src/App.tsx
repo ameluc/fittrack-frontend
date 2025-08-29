@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
-import Footer from "./components/SectionFooter";
-import NavBar from "./components/NavBar";
+import SectionFooter from "./components/SectionFooter";
+import SectionNavBar from "./components/SectionNavBar";
 // import AOS from "aos";
 // import "aos/dist/aos.css";
 
@@ -31,7 +31,7 @@ export default function App()
     });
 
     return (<>
-        <NavBar className="
+        <SectionNavBar className="
             sticky
             top-4
             z-1
@@ -51,7 +51,7 @@ export default function App()
             lg:left-8" />
         { isScreenBig && <div className="w-[2px] h-[80vh] top-[10vh] left-70 fixed bg-gray-200"/> }
         <Outlet />
-        <Footer className="
+        <SectionFooter className="
             w-full
             h-auto
             py-12
