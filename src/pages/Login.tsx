@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { activateButton, disableButton, validateEmail, validatePassword } from "../../utilitaries.ts";
+import { IconVisibility } from "../assets/Icons.tsx";
 import Button from "../components/Button.tsx";
-import InputField from "../components/InputField.tsx";
-import VisibilityIcon from "../assets/VisibilityIcon.tsx";
+import InputField from "../components/Input.tsx";
 
 
-function LoginPage()
+export default function Login()
 {
     const [ dataEmail, setDataEmail ] = useState("");
     const [ dataPassword, setDataPassword ] = useState("");
@@ -169,7 +169,7 @@ function LoginPage()
                             lg:ease-in-out
                             lg:hover:bg-gray-300
                             lg:dark:hover:bg-gray-500"
-                        buttonIcon={ <VisibilityIcon width="24" height="24" visible={ showPassword ? false : true } /> }
+                        buttonIcon={ <IconVisibility width="24" height="24" visible={ showPassword ? false : true } /> }
                         buttonType="button"
                         onClick={ togglePassword }/>
                 </div>
@@ -233,5 +233,3 @@ function LoginPage()
         </div>
     </div>);
 }
-
-export default LoginPage;

@@ -1,3 +1,7 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+[data-aos].aos-animate {
+    transform: scale(1);
+}

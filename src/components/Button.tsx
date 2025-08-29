@@ -11,7 +11,8 @@ interface ButtonProps
     ref?: React.Ref<HTMLButtonElement>
 };
 
-function Button({ className="", buttonActive=false, buttonIcon, buttonId="", buttonImg="", buttonText="", buttonType, onClick, ref } : ButtonProps)
+
+export default function Button({ className="", buttonActive=false, buttonIcon, buttonId="", buttonImg="", buttonText="", buttonType, onClick, ref } : ButtonProps)
 {
     return (<button className={ className } id={ buttonId } type={ buttonType } onClick={ onClick } ref={ ref } disabled={ buttonActive }>
         { buttonImg && <img src={ buttonImg } alt={ buttonText ? "" : buttonText } /> }
@@ -19,5 +20,3 @@ function Button({ className="", buttonActive=false, buttonIcon, buttonId="", but
         { buttonText && buttonText }
     </button>);
 }
-
-export default Button;

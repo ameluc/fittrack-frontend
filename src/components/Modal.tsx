@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 
+
 interface ModalProps
 {
     isOpen: boolean;
     onClose: () => void;
 };
 
-function Modal({ isOpen, onClose }: ModalProps)
+
+export default function Modal({ isOpen, onClose }: ModalProps)
 {
     const modalRef = useRef<HTMLDivElement>(null);
     const openerRef = useRef<HTMLElement | null>(null);
@@ -72,5 +74,3 @@ function Modal({ isOpen, onClose }: ModalProps)
     return (<div>
     </div>);
 }
-
-export default Modal;

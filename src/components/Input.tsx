@@ -10,15 +10,8 @@ interface InputProps
     ref?: React.Ref<HTMLInputElement>,
 };
 
-function InputField({
-    className="",
-    inputId="",
-    inputType="text",
-    placeholder="",
-    entry,
-    onEntry,
-    required,
-    ref } : InputProps)
+
+export default function Input({ className="", inputId="", inputType="text", placeholder="", entry, onEntry, required, ref } : InputProps)
 {
     return (<input
         className={ className }
@@ -32,5 +25,3 @@ function InputField({
         ref={ ref }
     />);
 }
-
-export default InputField;

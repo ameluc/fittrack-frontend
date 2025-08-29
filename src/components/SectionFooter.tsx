@@ -1,9 +1,10 @@
-interface FooterProps
+interface SectionProps
 {
     className?: string
 };
 
-function Footer({ className="" } : FooterProps)
+
+export default function SectionFooter({ className="" } : SectionProps)
 {
     return (<footer className={ className }>
         <p className="mb-4">&copy; 2025 FitTrack. All rights reserved.</p>
@@ -21,4 +22,3 @@ function Footer({ className="" } : FooterProps)
     </footer>);
 }
 
-export default Footer;
