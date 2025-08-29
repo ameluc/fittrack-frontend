@@ -1,3 +1,6 @@
+import type { ChangeEvent, JSX, Ref } from "react";
+
+
 interface InputProps
 {
     className?: string,
@@ -6,12 +9,12 @@ interface InputProps
     placeholder?: string,
     entry: string,
     required?: boolean,
-    onEntry: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    ref?: React.Ref<HTMLInputElement>,
+    onEntry: (event: ChangeEvent<HTMLInputElement>) => void,
+    ref?: Ref<HTMLInputElement>,
 };
 
 
-export default function Input({ className="", inputId="", inputType="text", placeholder="", entry, onEntry, required, ref } : InputProps)
+export default function Input({ className="", inputId="", inputType="text", placeholder="", entry, onEntry, required, ref } : InputProps) : JSX.Element
 {
     return (<input
         className={ className }

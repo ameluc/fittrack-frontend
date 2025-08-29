@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent, type JSX } from "react";
 import { Link } from "react-router";
 import { activateButton, disableButton, validateEmail, validatePassword } from "../../utilitaries.ts";
 import { IconVisibility } from "../assets/Icons.tsx";
@@ -6,27 +6,27 @@ import Button from "../components/Button.tsx";
 import InputField from "../components/Input.tsx";
 
 
-export default function Login()
+export default function Login() : JSX.Element
 {
-    const [ dataEmail, setDataEmail ] = useState("");
-    const [ dataPassword, setDataPassword ] = useState("");
-    const [ showPassword, setShowPassword ] = useState(false);
+    const [ dataEmail, setDataEmail ] = useState<string>("");
+    const [ dataPassword, setDataPassword ] = useState<string>("");
+    const [ showPassword, setShowPassword ] = useState<boolean>(false);
     const refButton = useRef<HTMLButtonElement>(null);
     const refInputEmail = useRef<HTMLInputElement>(null);
     const refInputPassword = useRef<HTMLInputElement>(null);
 
-    function togglePassword()
+    function togglePassword() : void
     {
         setShowPassword(prev => !prev);
     }
 
-    function handleSubmit(event: React.FormEvent)
+    function handleSubmit(event: FormEvent) : void
     {
         event.preventDefault();
         console.log({dataEmail, dataPassword});
     }
 
-    useEffect(() =>
+    useEffect(() : void  =>
     {
         if(dataEmail.length !== 0 && !validateEmail(dataEmail))
         {
@@ -38,7 +38,7 @@ export default function Login()
         }
     }, [dataEmail]);
 
-    useEffect(() =>
+    useEffect(() : void  =>
     {
         if(dataPassword.length !== 0 && !validatePassword(dataPassword))
         {

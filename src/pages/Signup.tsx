@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type JSX } from "react";
 import { Link } from "react-router";
 import { activateButton, disableButton, validateEmail, validatePassword } from "../../utilitaries.ts";
 import { IconVisibility } from "../assets/Icons.tsx";
@@ -6,33 +6,33 @@ import Button from "../components/Button.tsx";
 import InputField from "../components/Input.tsx";
 
 
-export default function Signup()
+export default function Signup() : JSX.Element
 {
-    const [ dataEmail, setDataEmail ] = useState("");
-    const [ dataName, setDataName ] = useState("");
-    const [ dataPassword1, setDataPassword1 ] = useState("");
-    const [ datapassword2, setDataPassword2 ] = useState("");
-    const [ isPasswordGood, setIsPasswordGood ] = useState(validatePassword(dataPassword1));
-    const [ isPasswordMatch, setIsPasswordMatch ] = useState(dataPassword1 === datapassword2);
-    const [ showPassword, setShowPassword ] = useState(false);
+    const [ dataEmail, setDataEmail ] = useState<string>("");
+    const [ dataName, setDataName ] = useState<string>("");
+    const [ dataPassword1, setDataPassword1 ] = useState<string>("");
+    const [ datapassword2, setDataPassword2 ] = useState<string>("");
+    const [ isPasswordGood, setIsPasswordGood ] = useState<boolean>(validatePassword(dataPassword1));
+    const [ isPasswordMatch, setIsPasswordMatch ] = useState<boolean>(dataPassword1 === datapassword2);
+    const [ showPassword, setShowPassword ] = useState<boolean>(false);
     const refButton = useRef<HTMLButtonElement>(null);
     const refInputEmail = useRef<HTMLInputElement>(null);
     const refInputName = useRef<HTMLInputElement>(null);
     const refInputPassword1 = useRef<HTMLInputElement>(null);
     const refInputPassword2 = useRef<HTMLInputElement>(null);
 
-    function togglePassword()
+    function togglePassword() : void
     {
         setShowPassword(prev => !prev);
     }
 
-    function handleSubmit(event: React.FormEvent)
+    function handleSubmit(event: React.FormEvent) : void
     {
         event.preventDefault();
         console.log({dataName, dataEmail, dataPassword1, datapassword2});
     }
 
-    useEffect(() =>
+    useEffect(() : void =>
     {
         if(dataEmail.length !== 0 && !validateEmail(dataEmail))
         {
@@ -44,7 +44,7 @@ export default function Signup()
         }
     }, [dataEmail]);
 
-    useEffect(() =>
+    useEffect(() : void  =>
     {
         if(dataPassword1.length !== 0 && !validatePassword(dataPassword1))
         {
@@ -58,7 +58,7 @@ export default function Signup()
         }
     }, [dataPassword1]);
 
-    useEffect(() =>
+    useEffect(() : void  =>
     {
         function checkPasswordMatch()
         {

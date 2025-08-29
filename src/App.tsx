@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type JSX } from "react";
 import { Outlet } from "react-router";
 import SectionFooter from "./components/SectionFooter";
 import SectionNavBar from "./components/SectionNavBar";
@@ -6,14 +6,9 @@ import SectionNavBar from "./components/SectionNavBar";
 // import "aos/dist/aos.css";
 
 
-export default function App()
+export default function App() : JSX.Element
 {
-    const [ isScreenBig, setIsScreenBig ] = useState(window.innerWidth > 1024);
-
-    function handleScreenSize()
-    {
-        setIsScreenBig(window.innerWidth > 1024);
-    }
+    const [ isScreenBig, setIsScreenBig ] = useState<boolean>(window.innerWidth > 1024);
 
     // useEffect(()=>
     // {
@@ -24,7 +19,13 @@ export default function App()
     //     });
     // });
 
-    useEffect(() => {
+    useEffect(() =>
+    {
+        function handleScreenSize() : void
+        {
+            setIsScreenBig(window.innerWidth > 1024);
+        }
+
         window.addEventListener("resize", handleScreenSize);
 
         return () => { window.removeEventListener("resize", handleScreenSize) };

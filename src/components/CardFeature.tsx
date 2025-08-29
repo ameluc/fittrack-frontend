@@ -1,3 +1,6 @@
+import type { JSX } from "react";
+
+
 interface CardProps
 {
     className?: string,
@@ -9,7 +12,7 @@ interface CardProps
 };
 
 
-export default function CardFeature({ className="", featureImg, featureImgText, featureText, featureTitle, reverse=false } : CardProps)
+export default function CardFeature({ className="", featureImg, featureImgText, featureText, featureTitle, reverse=false } : CardProps) : JSX.Element
 {
     if (reverse)
     {

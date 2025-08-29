@@ -1,10 +1,13 @@
+import type { JSX } from "react";
+
+
 interface SectionProps
 {
     className?: string
 };
 
 
-export default function SectionFooter({ className="" } : SectionProps)
+export default function SectionFooter({ className="" } : SectionProps) : JSX.Element
 {
     return (<footer className={ className }>
         <p className="mb-4">&copy; 2025 FitTrack. All rights reserved.</p>
@@ -21,4 +24,3 @@ export default function SectionFooter({ className="" } : SectionProps)
         <img className="w-[100px] h-auto mt-4 rounded-lg" src="https://placehold.co/100x50?text=FitTrack+Logo" alt="FitTrack logo" />
     </footer>);
 }
-

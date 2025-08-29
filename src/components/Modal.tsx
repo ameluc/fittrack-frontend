@@ -1,14 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type JSX } from "react";
 
 
 interface ModalProps
 {
-    isOpen: boolean;
-    onClose: () => void;
+    isOpen: boolean,
+    onClose: () => void,
 };
 
 
-export default function Modal({ isOpen, onClose }: ModalProps)
+export default function Modal({ isOpen, onClose }: ModalProps) : JSX.Element | null
 {
     const modalRef = useRef<HTMLDivElement>(null);
     const openerRef = useRef<HTMLElement | null>(null);

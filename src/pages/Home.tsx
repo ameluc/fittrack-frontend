@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type JSX } from "react";
 import buttonAppStore from "../assets/button-app-store.png"
 import buttonPlayStore from "../assets/button-play-store.png";
 import CardFeature from "../components/CardFeature";
@@ -6,18 +6,21 @@ import CardPricing from "../components/CardPricing";
 import CardTestimonial from "../components/CardTestimonial";
 
 
-export default function Home()
+export default function Home() : JSX.Element
 {
-    const [ isTabPlus, setIsTabPlus ] = useState(window.innerWidth >= 768);
-    const [ isLapPlus, setIsLapPlus ] = useState(window.innerWidth >= 768);
+    const [ isTabPlus, setIsTabPlus ] = useState<boolean>(window.innerWidth >= 768);
+    const [ isLapPlus, setIsLapPlus ] = useState<boolean>(window.innerWidth >= 768);
 
-    function handleScreenSize()
+
+
+    useEffect(() : () => void =>
     {
-        setIsTabPlus(window.innerWidth >= 768);
-        setIsLapPlus(window.innerWidth >= 1024);
-    }
+        function handleScreenSize() : void
+        {
+            setIsTabPlus(window.innerWidth >= 768);
+            setIsLapPlus(window.innerWidth >= 1024);
+        }
 
-    useEffect(() => {
         window.addEventListener("resize", handleScreenSize);
 
         return () => { window.removeEventListener("resize", handleScreenSize) };

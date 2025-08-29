@@ -5,7 +5,7 @@ import { RouterProvider } from "react-router";
 import "./index.css";
 import Router from "../routes.ts";
 
-const element = document.getElementById("root");
+const element: HTMLElement | null = document.getElementById("root");
 
 if (element)
 {
