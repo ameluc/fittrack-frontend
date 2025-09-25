@@ -54,7 +54,7 @@ export function validateEmail(email: string): boolean
     return regex.test(email);
 }
 
-export function validatePassword(password:string): boolean
+export function validatePassword(password: string): boolean
 {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;
 

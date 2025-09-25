@@ -11,9 +11,9 @@ export default function Signup() : JSX.Element
     const [ dataEmail, setDataEmail ] = useState<string>("");
     const [ dataName, setDataName ] = useState<string>("");
     const [ dataPassword1, setDataPassword1 ] = useState<string>("");
-    const [ datapassword2, setDataPassword2 ] = useState<string>("");
+    const [ dataPassword2, setDataPassword2 ] = useState<string>("");
     const [ isPasswordGood, setIsPasswordGood ] = useState<boolean>(validatePassword(dataPassword1));
-    const [ isPasswordMatch, setIsPasswordMatch ] = useState<boolean>(dataPassword1 === datapassword2);
+    const [ isPasswordMatch, setIsPasswordMatch ] = useState<boolean>(dataPassword1 === dataPassword2);
     const [ showPassword, setShowPassword ] = useState<boolean>(false);
     const refButton = useRef<HTMLButtonElement>(null);
     const refInputEmail = useRef<HTMLInputElement>(null);
@@ -29,7 +29,7 @@ export default function Signup() : JSX.Element
     function handleSubmit(event: React.FormEvent) : void
     {
         event.preventDefault();
-        console.log({dataName, dataEmail, dataPassword1, datapassword2});
+        console.log({ dataName, dataEmail, dataPassword1, dataPassword2 });
     }
 
     useEffect(() : void =>
@@ -62,20 +62,20 @@ export default function Signup() : JSX.Element
     {
         function checkPasswordMatch()
         {
-            return dataPassword1 === datapassword2
+            return dataPassword1 === dataPassword2
         }
 
-        if(datapassword2.length !== 0 && !checkPasswordMatch())
+        if(dataPassword2.length !== 0 && !checkPasswordMatch())
         {
-            setIsPasswordMatch(dataPassword1 === datapassword2);
+            setIsPasswordMatch(dataPassword1 === dataPassword2);
             disableButton(refInputPassword2, refButton);
         }
         else
         {
-            setIsPasswordMatch(dataPassword1 === datapassword2);
+            setIsPasswordMatch(dataPassword1 === dataPassword2);
             activateButton(refInputPassword2, refButton);
         }
-    }, [datapassword2, dataPassword1]);
+    }, [dataPassword1, dataPassword2]);
 
     return (<div className="min-h-screen">
         <div className="w-[90%] h-auto
@@ -284,11 +284,11 @@ export default function Signup() : JSX.Element
                     inputId="password"
                     inputType={ showPassword ? "text" : "password"}
                     placeholder="Password"
-                    entry= { datapassword2 }
+                    entry= { dataPassword2 }
                     onEntry={ (e) => {setDataPassword2(e.target.value)} }
                     required
                     ref={ refInputPassword2 }/>
-                { dataPassword1.length !== 0 && datapassword2.length !== 0 && !isPasswordMatch ?
+                { dataPassword1.length !== 0 && dataPassword2.length !== 0 && !isPasswordMatch ?
                     <div className="w-full h-auto
                         mx-auto
                         my-2

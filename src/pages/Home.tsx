@@ -8,27 +8,25 @@ import CardTestimonial from "../components/CardTestimonial";
 
 export default function Home() : JSX.Element
 {
-    const [ isTabPlus, setIsTabPlus ] = useState<boolean>(window.innerWidth >= 768);
-    const [ isLapPlus, setIsLapPlus ] = useState<boolean>(window.innerWidth >= 768);
-
-
+    const [ isMDView, setIsMDView ] = useState<boolean>(window.innerWidth >= 768);
+    const [ isLGView, setIsLGView ] = useState<boolean>(window.innerWidth >= 1024);
 
     useEffect(() : () => void =>
     {
         function handleScreenSize() : void
         {
-            setIsTabPlus(window.innerWidth >= 768);
-            setIsLapPlus(window.innerWidth >= 1024);
+            setIsMDView(window.innerWidth >= 768);
+            setIsLGView(window.innerWidth >= 1024);
         }
 
         window.addEventListener("resize", handleScreenSize);
 
         return () => { window.removeEventListener("resize", handleScreenSize) };
-    });
+    }, [ isMDView, isLGView ]);
 
     return (<>
-        <section id="hero" className={ isLapPlus ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
-            { isLapPlus && <div className="w-[25%] h-[100vh]"/> }
+        <section id="hero" className={ isLGView ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
+            { isLGView && <div className="w-[25%] h-[100vh]"/> }
             <div
                 className="w-full h-fit
                     mx-auto
@@ -124,8 +122,8 @@ export default function Home() : JSX.Element
                 <div className="w-[70vw] h-[1px] mx-auto my-40 bg-gray-300" />
             </div>
         </section>
-        <section id="features" className={ isLapPlus ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
-            { isLapPlus && <div className="w-[25%] h-[100vh]"/> }
+        <section id="features" className={ isLGView ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
+            { isLGView && <div className="w-[25%] h-[100vh]"/> }
             <div
                 className="w-full h-fit
                     mx-auto
@@ -180,7 +178,7 @@ export default function Home() : JSX.Element
                         featureImgText="Nutrition tracking illustration"
                         featureText="Track your calories and macros to stay on target."
                         featureTitle="Nutrition Monitoring"
-                        reverse={ isTabPlus ? false : true } />
+                        reverse={ isMDView ? false : true } />
                     <CardFeature
                         className="w-full h-fit
                             rounded-[64px]
@@ -203,8 +201,8 @@ export default function Home() : JSX.Element
                 <div className="w-[70vw] h-[1px] mx-auto my-40 bg-gray-300" />
             </div>
         </section>
-        <section id="testimonials" className={ isLapPlus ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
-            { isLapPlus && <div className="w-[25%] h-[100vh]"/> }
+        <section id="testimonials" className={ isLGView ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
+            { isLGView && <div className="w-[25%] h-[100vh]"/> }
             <div
                 className="w-full h-fit
                     mx-auto
@@ -259,8 +257,8 @@ export default function Home() : JSX.Element
                 <div className="w-[70vw] h-[1px] mx-auto my-40 bg-gray-300" />
             </div>
         </section>
-        <section id="pricing" className={ isLapPlus ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
-            { isLapPlus && <div className="w-[25%] h-[100vh]"/> }
+        <section id="pricing" className={ isLGView ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
+            { isLGView && <div className="w-[25%] h-[100vh]"/> }
             <div
                 className="w-full h-fit
                     mx-auto
@@ -297,8 +295,8 @@ export default function Home() : JSX.Element
                 <div className="w-[70vw] h-[1px] mx-auto my-40 bg-gray-300" />
             </div>
         </section>
-        <section id="download" className={ isLapPlus ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
-            { isLapPlus && <div className="w-[20%] h-[100vh]"/> }
+        <section id="download" className={ isLGView ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
+            { isLGView && <div className="w-[20%] h-[100vh]"/> }
             <div
                 className="
                     mx-auto

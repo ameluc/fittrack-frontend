@@ -52,9 +52,8 @@ export default function App() : JSX.Element
             lg:left-8" />
         { isScreenBig && <div className="w-[2px] h-[80vh] top-[10vh] left-70 fixed bg-gray-200"/> }
         <Outlet />
-        <SectionFooter className="
-            w-full
-            h-auto
+        <SectionFooter className="w-full h-auto
+            px-6
             py-12
             flex
             flex-col
