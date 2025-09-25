@@ -32,19 +32,16 @@ export default function App() : JSX.Element
     });
 
     return (<>
-        <SectionNavBar className="
-            sticky
-            top-4
+        <SectionNavBar className="sticky
+            top-0
             z-1
-            w-fit
+            w-full
             h-auto
-            mx-auto
             px-4
-            rounded-3xl
-            shadow-[8px_8px_16px_#c7c8ca,-8px_-8px_16px_#ffffff]
-            dark:shadow-[8px_8px_16px_#1a2330,-8px_-8px_16px_#232f42]
+            pt-4
+            pb-10
+            bg-gray-100 dark:bg-gray-800
             flex
-            flex-col
             items-center
             justify-center
             lg:fixed
