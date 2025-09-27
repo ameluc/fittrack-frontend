@@ -3,7 +3,7 @@ import Button from "../components/Button";
 
 
 export default function Dashboard() : JSX.Element {
-    const [ isMDView, setIsMDView ] = useState<boolean>(window.innerWidth >= 768);
+    // const [ isMDView, setIsMDView ] = useState<boolean>(window.innerWidth >= 768);
     const [ isLGView, setIsLGView ] = useState<boolean>(window.innerWidth >= 1024);
     const [ isSticky, setIsSticky ] = useState<boolean>(false);
     const refTitleContainer = useRef<HTMLElement>(null);
@@ -19,11 +19,11 @@ export default function Dashboard() : JSX.Element {
     useEffect(() => {
         function handleScreenSize() {
             setIsLGView(window.innerWidth >= 1024);
-            setIsMDView(window.innerWidth >= 768);
+            // setIsMDView(window.innerWidth >= 768);
         }
         window.addEventListener("resize", handleScreenSize);
         return () => { window.removeEventListener("resize", handleScreenSize) };
-    }, [ isLGView, isMDView ]);
+    });
 
     return (<div className="w-full h-auto flex flex-col lg:flex-row">
         { isLGView && <div className="w-full lg:w-[25%] h-[100vh] lg:h-[100vh]" /> }
