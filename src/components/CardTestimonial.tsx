@@ -1,8 +1,7 @@
 import type { JSX } from "react";
 
 
-interface CardProps
-{
+interface CardProps {
     className?: string,
     testimonialCite: string,
     testimonialImg: string,
@@ -11,8 +10,7 @@ interface CardProps
 };
 
 
-export default function CardTestimonial({ className="", testimonialCite, testimonialImg, testimonialImgText, testimonialText } : CardProps) : JSX.Element
-{
+export default function CardTestimonial({ className="", testimonialCite, testimonialImg, testimonialImgText, testimonialText } : CardProps) : JSX.Element {
     return (<div className={ className }>
         <div className="w-fit h-auto
             p-4

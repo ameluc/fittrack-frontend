@@ -1,8 +1,7 @@
 import type { JSX } from "react";
 
 
-interface CardProps
-{
+interface CardProps {
     className?: string,
     pricingImg: string,
     pricingImgText: string,
@@ -11,8 +10,7 @@ interface CardProps
 };
 
 
-export default function CardPricing({ className="", pricingImg, pricingImgText,  pricingText, pricingTitle } : CardProps) : JSX.Element
-{
+export default function CardPricing({ className="", pricingImg, pricingImgText,  pricingText, pricingTitle } : CardProps) : JSX.Element {
     return (<div className={ className }>
         <div className="w-full h-auto pr-3 flex flex-col gap-2 md:px-0 md:py-4 md:w-[80%]">
             <h3 className="text-end font-medium text-xl text-[#1e3a8a] dark:text-[#84f3d0]">{ pricingTitle }</h3>

@@ -1,8 +1,7 @@
 import type { JSX } from "react";
 
 
-interface CardProps
-{
+interface CardProps {
     className?: string,
     featureImg: string,
     featureImgText: string,
@@ -12,10 +11,8 @@ interface CardProps
 };
 
 
-export default function CardFeature({ className="", featureImg, featureImgText, featureText, featureTitle, reverse=false } : CardProps) : JSX.Element
-{
-    if (reverse)
-    {
+export default function CardFeature({ className="", featureImg, featureImgText, featureText, featureTitle, reverse=false } : CardProps) : JSX.Element {
+    if (reverse) {
         return (<div className={ className }>
             <div className="w-full h-auto
                 p-4
@@ -29,9 +26,7 @@ export default function CardFeature({ className="", featureImg, featureImgText, 
                 <p className="text-center md:text-start lg:text-center">{ featureText }</p>
             </div>
         </div>);
-    }
-    else
-    {
+    } else {
         return (<div className={ className }>
             <div className="px-4 flex flex-col items-center justify-center md:items-end lg:items-center">
                 <h3 className="py-2 font-medium text-xl text-[#1e3a8a] dark:text-[#84f3d0]">{ featureTitle }</h3>

@@ -6,21 +6,16 @@ import CardPricing from "../components/CardPricing";
 import CardTestimonial from "../components/CardTestimonial";
 
 
-export default function Home() : JSX.Element
-{
+export default function Home() : JSX.Element {
     const [ isMDView, setIsMDView ] = useState<boolean>(window.innerWidth >= 768);
     const [ isLGView, setIsLGView ] = useState<boolean>(window.innerWidth >= 1024);
-
-    useEffect(() : () => void =>
-    {
-        function handleScreenSize() : void
-        {
+    useEffect(() => {
+        function handleScreenSize() : void {
             setIsMDView(window.innerWidth >= 768);
             setIsLGView(window.innerWidth >= 1024);
         }
 
         window.addEventListener("resize", handleScreenSize);
-
         return () => { window.removeEventListener("resize", handleScreenSize) };
     }, [ isMDView, isLGView ]);
 
@@ -52,16 +47,14 @@ export default function Home() : JSX.Element
                         justify-center
                         text-center">
                         <div className="w-fit h-fit pb-4">
-                            <h1 className="
-                                font-bold
+                            <h1 className="font-bold
                                 text-[28px]
                                 text-[#111827]
                                 dark:text-gray-100
                                 md:text-4xl
                                 lg:text-5xl">Track your progress,
                             </h1>
-                            <h1 className="
-                                font-bold
+                            <h1 className="font-bold
                                 text-[28px]
                                 text-[#111827]
                                 dark:text-gray-100
@@ -69,8 +62,7 @@ export default function Home() : JSX.Element
                                 lg:text-5xl">reach your goals
                             </h1>
                         </div>
-                        <p className="
-                            pb-8
+                        <p className="pb-8
                             text-base
                             text-[#6B7280]
                             dark:text-gray-100
@@ -110,7 +102,7 @@ export default function Home() : JSX.Element
                         </a>
                     </div>
                     <div className="w-fit h-fit
-                    p-4
+                            p-4
                             rounded-2xl
                             shadow-[8px_8px_16px_#c7c8ca,-8px_-8px_16px_#ffffff]
                             dark:shadow-[8px_8px_16px_#1a2330,-8px_-8px_16px_#232f42]
@@ -298,8 +290,7 @@ export default function Home() : JSX.Element
         <section id="download" className={ isLGView ? "w-full h-fit flex flex-row" : "w-full h-fit" } data-aos="fade-up" data-aos-offset="100">
             { isLGView && <div className="w-[20%] h-[100vh]"/> }
             <div
-                className="
-                    mx-auto
+                className="mx-auto
                     flex
                     flex-col
                     items-center
@@ -315,8 +306,7 @@ export default function Home() : JSX.Element
                     lg:text-3xl">Start your fitness journey today
                 </h2>
                 <div className="w-fit h-auto mx-auto my-4 flex flex-row items-center justify-center gap-6">
-                    <a className="
-                            focus-visible:outline-none
+                    <a className="focus-visible:outline-none
                             focus-visible:ring-2
                             focus-visible:ring-blue-400
                             lg:cursor-pointer
@@ -329,8 +319,7 @@ export default function Home() : JSX.Element
                         target="blank">
                         <img className="w-auto h-10 md:h" src={ buttonAppStore } alt="app store button" />
                     </a>
-                    <a className="
-                            focus-visible:outline-none
+                    <a className="focus-visible:outline-none
                             focus-visible:ring-2
                             focus-visible:ring-blue-400
                             lg:cursor-pointer

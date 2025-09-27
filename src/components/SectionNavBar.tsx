@@ -5,21 +5,16 @@ import Button from "./Button";
 import { IconDownload, IconFeature, IconLogin, IconPricing, IconTestimonial, IconUiDark, IconUiLight } from "../assets/Icons.tsx";
 
 
-interface SectionProps
-{
+interface SectionProps {
     className?: string,
     navBarText?: string
 };
 
 
-export default function SectionNavBar({ className="" } : SectionProps) : JSX.Element
-{
+export default function SectionNavBar({ className="" } : SectionProps) : JSX.Element {
+    const [ isMDView, setIsMDView ] = useState<boolean>(window.innerWidth >= 768);
     const [ theme, setTheme ] = useState<string>(() => localStorage.getItem("theme") ?? "light");
-    const [ isScreenBig, setIsScreenBig ] = useState<boolean>(window.innerWidth > 768);
-
-    const linkStyles = `
-        w-fit
-        h-auto
+    const linkStyles = `w-fit h-auto
         flex
         flex-row
         items-center
@@ -40,28 +35,18 @@ export default function SectionNavBar({ className="" } : SectionProps) : JSX.Ele
         lg:hover:bg-gray-200
         lg:dark:hover:bg-sky-900
     `
-
-    useEffect(() : void =>
-    {
-        setUiMode(theme);
-    }, [theme]);
-
-    useEffect(() : () => void =>
-    {
-        function handleScreenSize() : void
-        {
-            setIsScreenBig(window.innerWidth > 768);
+    useEffect(() => { setUiMode(theme); }, [theme]);
+    useEffect(() => {
+        function handleScreenSize() : void  {
+            setIsMDView(window.innerWidth > 768);
         }
 
         window.addEventListener("resize", handleScreenSize);
-
         return () => { window.removeEventListener("resize", handleScreenSize) };
     });
 
     return (<nav className={ className }>
-        <div className="
-            w-fit
-            h-auto
+        <div className="w-fit h-auto
             rounded-3xl
             px-4
             pt-4
@@ -132,19 +117,19 @@ export default function SectionNavBar({ className="" } : SectionProps) : JSX.Ele
             <div className="w-fit h-auto mx-auto px-4 py-4 flex flex-row items-center justify-center gap-8 lg:flex-col">
                 <a className={ linkStyles } aria-label="link to features" href="#features">
                     <IconFeature width="32" height="32" />
-                    { isScreenBig && <p>Features</p> }
+                    { isMDView && <p>Features</p> }
                 </a>
                 <a className={ linkStyles } aria-label="link to testimonials" href="#testimonials">
                     <IconTestimonial width="32" height="32" />
-                    { isScreenBig && <p>Testimonials</p> }
+                    { isMDView && <p>Testimonials</p> }
                 </a>
                 <a className={ linkStyles } aria-label="link to pricing" href="#pricing">
                     <IconPricing width="32" height="32" />
-                    { isScreenBig && <p>Pricing</p> }
+                    { isMDView && <p>Pricing</p> }
                 </a>
                 <a className={ linkStyles } aria-label="link to download" href="#download">
                     <IconDownload className={ theme === "dark" ? "text-teal-400" : "text-sky-600" } width="32" height="32" />
-                    { isScreenBig && <p className={ theme === "dark" ? "text-teal-400" : "text-sky-600" }>Download</p> }
+                    { isMDView && <p className={ theme === "dark" ? "text-teal-400" : "text-sky-600" }>Download</p> }
                 </a>
             </div>
         </div>

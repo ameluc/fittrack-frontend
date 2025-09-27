@@ -1,8 +1,7 @@
 import type { JSX } from "react";
 
 
-interface IconProps
-{
+interface IconProps {
     className?: string,
     color?: string,
     width?: string,
@@ -11,8 +10,7 @@ interface IconProps
 };
 
 
-export function IconUiDark({ className, color, width="16", height="16" } : IconProps) : JSX.Element
-{
+export function IconUiDark({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
     return (<svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width={ width }
@@ -30,8 +28,7 @@ export function IconUiDark({ className, color, width="16", height="16" } : IconP
     </svg>);
 }
 
-export function IconUiLight({ className, color, width="16", height="16" } : IconProps) : JSX.Element
-{
+export function IconUiLight({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
     return (<svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width={ width }
@@ -56,8 +53,7 @@ export function IconUiLight({ className, color, width="16", height="16" } : Icon
     </svg>);
 }
 
-export function IconDownload({ className, color, width="16", height="16" } : IconProps) : JSX.Element
-{
+export function IconDownload({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
     return (<svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width={ width }
@@ -86,8 +82,7 @@ export function IconDownload({ className, color, width="16", height="16" } : Ico
     </svg>);
 }
 
-export function IconFeature({ className, color, width="16", height="16" } : IconProps) : JSX.Element
-{
+export function IconFeature({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
     return (<svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width={ width }
@@ -122,8 +117,7 @@ export function IconFeature({ className, color, width="16", height="16" } : Icon
     </svg>);
 }
 
-export function IconLogin({ className, color, width="16", height="16" } : IconProps) : JSX.Element
-{
+export function IconLogin({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
     return (<svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width={ width }
@@ -160,8 +154,7 @@ export function IconLogin({ className, color, width="16", height="16" } : IconPr
     </svg>);
 }
 
-export function IconPricing({ className, color, width="16", height="16" } : IconProps) : JSX.Element
-{
+export function IconPricing({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
     return (<svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width={ width }
@@ -184,8 +177,7 @@ export function IconPricing({ className, color, width="16", height="16" } : Icon
     </svg>);
 }
 
-export function IconTestimonial({ className, color, width="16", height="16" } : IconProps) : JSX.Element
-{
+export function IconTestimonial({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
     return (<svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width={ width }
@@ -203,10 +195,8 @@ export function IconTestimonial({ className, color, width="16", height="16" } : 
     </svg>);
 }
 
-export function IconVisibility({ className, color, width="16", height="16", visible } : IconProps) : JSX.Element
-{
-    if (visible)
-    {
+export function IconVisibility({ className, color, width="16", height="16", visible } : IconProps) : JSX.Element {
+    if (visible) {
         return (<svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             width={ width }
@@ -229,9 +219,7 @@ export function IconVisibility({ className, color, width="16", height="16", visi
                 strokeLinecap="round"
                 strokeLinejoin="round" />
         </svg>);
-    }
-    else
-    {
+    } else {
         return (<svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             width={ width }

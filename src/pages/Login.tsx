@@ -6,8 +6,7 @@ import Button from "../components/Button.tsx";
 import InputField from "../components/Input.tsx";
 
 
-export default function Login() : JSX.Element
-{
+export default function Login() : JSX.Element {
     const [ dataEmail, setDataEmail ] = useState<string>("");
     const [ dataPassword, setDataPassword ] = useState<string>("");
     const [ showPassword, setShowPassword ] = useState<boolean>(false);
@@ -15,38 +14,27 @@ export default function Login() : JSX.Element
     const refInputEmail = useRef<HTMLInputElement>(null);
     const refInputPassword = useRef<HTMLInputElement>(null);
 
-    function togglePassword() : void
-    {
+    function togglePassword() : void {
         setShowPassword(prev => !prev);
     }
 
-    function handleSubmit(event: FormEvent) : void
-    {
+    function handleSubmit(event: FormEvent) : void {
         event.preventDefault();
         console.log({dataEmail, dataPassword});
     }
 
-    useEffect(() : void  =>
-    {
-        if(dataEmail.length !== 0 && !validateEmail(dataEmail))
-        {
+    useEffect(() => {
+        if (dataEmail.length !== 0 && validateEmail(dataEmail)) {
+            activateButton(refInputEmail, refButton);
+        } else {
             disableButton(refInputEmail, refButton);
         }
-        else
-        {
-            activateButton(refInputEmail, refButton);
-        }
     }, [dataEmail]);
-
-    useEffect(() : void  =>
-    {
-        if(dataPassword.length !== 0 && !validatePassword(dataPassword))
-        {
-            disableButton(refInputPassword, refButton);
-        }
-        else
-        {
+    useEffect(() => {
+        if (dataPassword.length !== 0 && validatePassword(dataPassword)) {
             activateButton(refInputPassword, refButton);
+        } else {
+            disableButton(refInputPassword, refButton);
         }
     }, [dataPassword]);
 
@@ -65,8 +53,7 @@ export default function Login() : JSX.Element
             dark:bg-gray-700
             md:w-xl
             lg:w-2xl">
-            <h2 className="
-                py-4
+            <h2 className="py-4
                 italic
                 text-2xl
                 md:text-3xl

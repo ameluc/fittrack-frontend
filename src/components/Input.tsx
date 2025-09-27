@@ -1,8 +1,7 @@
 import type { ChangeEvent, JSX, Ref } from "react";
 
 
-interface InputProps
-{
+interface InputProps {
     className?: string,
     inputId?: string,
     inputType?: string,
@@ -14,8 +13,7 @@ interface InputProps
 };
 
 
-export default function Input({ className="", inputId="", inputType="text", placeholder="", entry, onEntry, required, ref } : InputProps) : JSX.Element
-{
+export default function Input({ className="", inputId="", inputType="text", placeholder="", entry, onEntry, required, ref } : InputProps) : JSX.Element {
     return (<input
         className={ className }
         id={ inputId }

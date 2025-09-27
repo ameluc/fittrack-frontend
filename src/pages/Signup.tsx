@@ -6,8 +6,7 @@ import Button from "../components/Button.tsx";
 import InputField from "../components/Input.tsx";
 
 
-export default function Signup() : JSX.Element
-{
+export default function Signup() : JSX.Element {
     const [ dataEmail, setDataEmail ] = useState<string>("");
     const [ dataName, setDataName ] = useState<string>("");
     const [ dataPassword1, setDataPassword1 ] = useState<string>("");
@@ -21,57 +20,39 @@ export default function Signup() : JSX.Element
     const refInputPassword1 = useRef<HTMLInputElement>(null);
     const refInputPassword2 = useRef<HTMLInputElement>(null);
 
-    function togglePassword() : void
-    {
+    function togglePassword() : void {
         setShowPassword(prev => !prev);
     }
-
-    function handleSubmit(event: React.FormEvent) : void
-    {
+    function handleSubmit(event: React.FormEvent) : void {
         event.preventDefault();
         console.log({ dataName, dataEmail, dataPassword1, dataPassword2 });
     }
 
-    useEffect(() : void =>
-    {
-        if(dataEmail.length !== 0 && !validateEmail(dataEmail))
-        {
+    useEffect(() => {
+        if (dataEmail.length !== 0 && validateEmail(dataEmail)) {
+            activateButton(refInputEmail, refButton);
+        } else {
             disableButton(refInputEmail, refButton);
         }
-        else
-        {
-            activateButton(refInputEmail, refButton);
-        }
-    }, [dataEmail]);
-
-    useEffect(() : void  =>
-    {
-        if(dataPassword1.length !== 0 && !validatePassword(dataPassword1))
-        {
+    }, [ dataEmail ]);
+    useEffect(() => {
+        if (dataPassword1.length !== 0 && !validatePassword(dataPassword1)) {
             setIsPasswordGood(validatePassword(dataPassword1));
             disableButton(refInputPassword1, refButton);
-        }
-        else
-        {
+        } else {
             setIsPasswordGood(validatePassword(dataPassword1));
             activateButton(refInputPassword1, refButton);
         }
     }, [dataPassword1]);
-
-    useEffect(() : void  =>
-    {
-        function checkPasswordMatch()
-        {
+    useEffect(() => {
+        function checkPasswordMatch() {
             return dataPassword1 === dataPassword2
         }
 
-        if(dataPassword2.length !== 0 && !checkPasswordMatch())
-        {
+        if (dataPassword2.length !== 0 && !checkPasswordMatch()) {
             setIsPasswordMatch(dataPassword1 === dataPassword2);
             disableButton(refInputPassword2, refButton);
-        }
-        else
-        {
+        } else {
             setIsPasswordMatch(dataPassword1 === dataPassword2);
             activateButton(refInputPassword2, refButton);
         }
