@@ -6,7 +6,6 @@ interface ModalProps {
     onClose: () => void,
 };
 
-
 export default function Modal({ isOpen, onClose }: ModalProps) : JSX.Element | null {
     const modalRef = useRef<HTMLDivElement>(null);
     const openerRef = useRef<HTMLElement | null>(null);
@@ -43,9 +42,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) : JSX.Element | n
             }
 
             document.addEventListener("keydown", handleKeyDown);
-            return () => {
-                document.removeEventListener("keydown", handleKeyDown);
-            };
+            return () => {document.removeEventListener("keydown", handleKeyDown);};
         } else {
             // Restaure le focus sur l’élément qui a ouvert la modale
             openerRef.current?.focus();

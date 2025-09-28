@@ -7,7 +7,6 @@ interface CardProps {
     sectionTitle?: string
 };
 
-
 export default function CardDashboard({ className, sectionElements, sectionTitle } : CardProps) : JSX.Element {
     return (<div className={ className }>
         <h2>{ sectionTitle }</h2>

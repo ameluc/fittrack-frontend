@@ -9,7 +9,6 @@ interface CardProps {
     pricingTitle: string
 };
 
-
 export default function CardPricing({ className="", pricingImg, pricingImgText,  pricingText, pricingTitle } : CardProps) : JSX.Element {
     return (<div className={ className }>
         <div className="w-full h-auto pr-3 flex flex-col gap-2 md:px-0 md:py-4 md:w-[80%]">

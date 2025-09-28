@@ -9,7 +9,6 @@ interface IconProps {
     visible?: boolean
 };
 
-
 export function IconUiDark({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
     return (<svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -28,7 +27,7 @@ export function IconUiDark({ className, color, width="16", height="16" } : IconP
     </svg>);
 }
 
-export function IconUiLight({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
+export function IconUiBright({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
     return (<svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width={ width }
