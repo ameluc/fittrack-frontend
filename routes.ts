@@ -16,5 +16,4 @@ const Router = createBrowserRouter([{
         { path: "dashboard", Component: Dashboard }
     ]
 }]);
-
 export default Router;
