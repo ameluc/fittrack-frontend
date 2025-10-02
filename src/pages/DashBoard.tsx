@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState, type JSX } from "react";
+import { ResponsiveBar } from "@nivo/bar";
 import Button from "../components/Button";
+import { mockDailyActivity } from "../data/mockDailyActivity";
 
 
 const mockUserProfile = {
-    username: "Yazeel",
-    age: 27,
-    height: 175,  // cm
-    weight: 75,   // kg
-    preferredUnits: "metric"
+    "username": "Yazeel",
+    "age": 27,
+    "height": 175,
+    "weight": 75,
+    "preferredUnits": "metric"
 };
 
 export default function Dashboard() : JSX.Element {
@@ -18,7 +20,7 @@ export default function Dashboard() : JSX.Element {
     const styles = {
         "dataSection": "w-full h-auto rounded-3xl p-4 flex flex-col items-center justify-center gap-4 overflow-y-auto shadow-[8px_8px_16px_#c7c8ca,-8px_-8px_16px_#ffffff] dark:shadow-[8px_8px_16px_#1a2330,-8px_-8px_16px_#232f42]",
         "dataH2": "text-lg md:text-2xl lg:text-3xl",
-        "dataDiv": "w-full h-auto max-h-[50vh] rounded-lg p-2 flex flex-col items-center justify-center shadow-[inset_8px_8px_16px_#c7c8ca,inset_-8px_-8px_16px_#ffffff] dark:shadow-[inset_8px_8px_16px_#1a2330,inset_-8px_-8px_16px_#232f42]",
+        "dataDiv": "w-full h-[40vh] rounded-lg shadow-[inset_8px_8px_16px_#c7c8ca,inset_-8px_-8px_16px_#ffffff] dark:shadow-[inset_8px_8px_16px_#1a2330,inset_-8px_-8px_16px_#232f42]",
         "settingsSection": "lg:fixed lg:right-8 w-full lg:w-fit h-auto rounded-3xl p-4 flex flex-col items-center justify-center gap-4 shadow-[8px_8px_16px_#c7c8ca,-8px_-8px_16px_#ffffff] dark:shadow-[8px_8px_16px_#1a2330,-8px_-8px_16px_#232f42]",
         "settingsButton": "w-full h-auto lg:border-2 rounded-lg lg:border-blue-400/0 lg:px-12 py-2 flex flex-col items-center justify-center shadow-[8px_8px_16px_#c7c8ca,-8px_-8px_16px_#ffffff] dark:shadow-[8px_8px_16px_#1a2330,-8px_-8px_16px_#232f42] lg:hover:cursor-pointer",
         "sticky": "sticky top-52 px-6 w-full h-auto bg-gray-100 dark:bg-gray-800 shadow-[8px_8px_16px_#c7c8ca] dark:shadow-[8px_8px_16px_#1a2330] flex flex-col md:flex-row items-center justify-center md:gap-2",
@@ -55,7 +57,15 @@ export default function Dashboard() : JSX.Element {
                     <section className={ styles.dataSection }>
                         <h2 className={ styles.dataH2 }>Daily Activity</h2>
                         <div className={ styles.dataDiv }>
-                            [ Chart placeholder ]
+                            <ResponsiveBar
+                                margin={{ "top": 20, "bottom": 60, "left": 80, "right": 20 }}
+                                data={ mockDailyActivity.data }
+                                indexBy={ "date" }
+                                layout="horizontal"
+                                keys={ mockDailyActivity.keys }
+                                axisBottom={{ legend: "steps", legendOffset: 32 }}
+                                axisLeft={{ legend: "date", legendOffset: -60 }}
+                            />
                         </div>
                     </section>
                     <section className={ styles.dataSection }>
@@ -68,6 +78,7 @@ export default function Dashboard() : JSX.Element {
                 <section className={ styles.settingsSection }>
                     <h2 className="text-base md:text-lg lg:text-xl">Profile & Settings</h2>
                     <div className="w-full lg:w-fit h-auto flex flex-col items-center justify-center gap-8">
+                        { mockUserProfile.username }
                         <Button className={ styles.settingsButton + "lg:hover:border-blue-400" } buttonType="button" buttonText="Profile" />
                         <Button className={ styles.settingsButton + "lg:hover:border-yellow-400" } buttonType="button" buttonText="Settings" />
                     </div>
