@@ -7,15 +7,17 @@ export default function App() : JSX.Element {
     const [ isLGView, setIsLGView ] = useState<boolean>(window.innerWidth >= 1024);
     const styles = {
         "footer": "w-full h-auto px-6 py-12 flex flex-col items-center justify-center text-sm",
-        "header": isLGView ? "" : "sticky top-0 z-1 w-full h-auto px-4 pt-4 pb-10 bg-gray-100 dark:bg-gray-800 flex items-center justify-center lg:fixed lg:top-24 lg:left-8",
+        "header": isLGView ? "" : "z-11 sticky top-0 w-full h-auto px-4 pt-4 pb-10 bg-gray-100 dark:bg-gray-800 flex items-center justify-center lg:fixed lg:top-24 lg:left-8",
         "link": "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
     };
+
     useEffect(() => {
         function handleScreenSize() : void {
             setIsLGView(window.innerWidth >= 1024);
         }
 
         window.addEventListener("resize", handleScreenSize);
+
         return () => { window.removeEventListener("resize", handleScreenSize) };
     });
 

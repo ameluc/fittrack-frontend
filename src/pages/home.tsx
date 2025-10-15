@@ -11,7 +11,7 @@ export default function Home() : JSX.Element {
     const [ isMDView, setIsMDView ] = useState<boolean>(window.innerWidth >= 768);
     const [ isLGView, setIsLGView ] = useState<boolean>(window.innerWidth >= 1024);
     const sectionStyle: string = isLGView ? "w-full h-fit flex flex-row" : "w-full h-fit";
-    const styles: Record<string, string> = {
+    const styles : Record<string, string> = {
         "feature": "w-full h-fit rounded-[64px] p-8 shadow-[inset_8px_8px_16px_#c7c8ca,inset_-8px_-8px_16px_#ffffff] dark:shadow-[inset_8px_8px_16px_#1a2330,inset_-8px_-8px_16px_#232f42] flex flex-col items-center justify-center gap-8 md:flex-row lg:flex-col",
         "pricing": "w-full h-fit flex flex-row items-center justify-end md:w-[50%] md:flex-col-reverse",
         "testimonial": "w-full h-fit flex flex-col items-center justify-center gap-2 md:pl-20 md:flex-row md:gap-8 lg:pl-0",
@@ -22,6 +22,7 @@ export default function Home() : JSX.Element {
         "h1": "font-bold text-[28px] text-[#111827] dark:text-gray-100 md:text-4xl lg:text-5xl",
         "h2": "w-full h-fit py-12 text-center font-semibold text-2xl lg:text-center lg:text-3xl"
     };
+
     useEffect(() => {
         function handleScreenSize() : void {
             setIsMDView(window.innerWidth >= 768);
@@ -29,6 +30,7 @@ export default function Home() : JSX.Element {
         }
 
         window.addEventListener("resize", handleScreenSize);
+
         return () => { window.removeEventListener("resize", handleScreenSize) };
     }, [ isMDView, isLGView ]);
 

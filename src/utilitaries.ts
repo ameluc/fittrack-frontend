@@ -14,7 +14,6 @@ export function activateButton(refInput: RefObject<HTMLInputElement | null>, ref
         refButton.current.disabled = false;
     }
 }
-
 export function disableButton(refInput: RefObject<HTMLInputElement | null>, refButton: RefObject<HTMLButtonElement | null>)
 {
     if (refButton.current && refInput.current)
@@ -28,7 +27,6 @@ export function disableButton(refInput: RefObject<HTMLInputElement | null>, refB
         refButton.current.disabled = true;
     }
 }
-
 export function setUiMode(mode: string | null)
 {
     if (mode === "dark")
@@ -46,14 +44,12 @@ export function setUiMode(mode: string | null)
         localStorage.removeItem("theme");
     }
 }
-
 export function validateEmail(email: string): boolean
 {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     return regex.test(email);
 }
-
 export function validatePassword(password: string): boolean
 {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;

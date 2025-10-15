@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState, type JSX } from "react";
-import { Link } from "react-router";
-import { activateButton, disableButton, validateEmail, validatePassword } from "../../utilitaries.ts";
+import type { JSX, RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
+import { NavLink } from "react-router";
+import { activateButton, disableButton, validateEmail, validatePassword } from "../utilitaries";
 import { IconVisibility } from "../assets/Icons.tsx";
 import Button from "../components/Button.tsx";
 import InputField from "../components/Input.tsx";
 
 
-export default function Signup() : JSX.Element {
+export default function SignUp() : JSX.Element {
     const [ dataEmail, setDataEmail ] = useState<string>("");
     const [ dataName, setDataName ] = useState<string>("");
     const [ dataPassword1, setDataPassword1 ] = useState<string>("");
@@ -14,12 +15,12 @@ export default function Signup() : JSX.Element {
     const [ isPasswordGood, setIsPasswordGood ] = useState<boolean>(validatePassword(dataPassword1));
     const [ isPasswordMatch, setIsPasswordMatch ] = useState<boolean>(dataPassword1 === dataPassword2);
     const [ showPassword, setShowPassword ] = useState<boolean>(false);
-    const refButton = useRef<HTMLButtonElement>(null);
-    const refInputEmail = useRef<HTMLInputElement>(null);
-    const refInputName = useRef<HTMLInputElement>(null);
-    const refInputPassword1 = useRef<HTMLInputElement>(null);
-    const refInputPassword2 = useRef<HTMLInputElement>(null);
-    const styles = {
+    const refButton : RefObject<HTMLButtonElement | null> = useRef<HTMLButtonElement>(null);
+    const refInputEmail : RefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null);
+    const refInputName : RefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null);
+    const refInputPassword1 : RefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null);
+    const refInputPassword2 : RefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null);
+    const styles : Record<string, string> = {
         "label": "w-full h-auto pl-8 pt-4 pb-2 text-lg md:text-2xl",
         "input": "w-full h-auto rounded-lg px-2 py-2 bg-gray-50 placeholder:text-center placeholder:italic placeholder:text-xs placeholder-gray-400 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:bg-gray-600 md:placeholder:text-sm md:text-base",
         "infoDiv": "w-full h-auto mx-auto my-2 rounded-lg py-2 bg-[#f9fafb] inset-shadow-sm flex flex-col items-center justify-center text-[12px] text-gray-400 md:w-fit",
@@ -90,7 +91,7 @@ export default function Signup() : JSX.Element {
             setIsPasswordMatch(dataPassword1 === dataPassword2);
             activateButton(refInputPassword2, refButton);
         }
-    }, [dataPassword1, dataPassword2]);
+    }, [ dataPassword1, dataPassword2 ]);
 
     return (<div className="min-h-screen">
         <div className="w-[90%] h-auto mx-auto my-12 px-4 rounded-3xl bg-gray-100 shadow-md flex flex-col items-center justify-center dark:bg-gray-700 md:w-xl lg:w-2xl">
@@ -112,7 +113,7 @@ export default function Signup() : JSX.Element {
                 { handlePasswordsMatch() }
                 <Button className={ styles.buttonSubmit } buttonId="submit-button" buttonType="submit" buttonText="Sign up" ref={ refButton }/>
             </form>
-            <Link className={ styles.authLink } to={"/login"}>Already have an account?</Link>
+            <NavLink className={ styles.authLink } to={ "/login" }>Already have an account?</NavLink>
         </div>
     </div>);
 }
