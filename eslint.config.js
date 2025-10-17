@@ -8,7 +8,7 @@ import reactX from "eslint-plugin-react-x";
 import reactDom from "eslint-plugin-react-dom";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 
-export default tseslint.config([
+export default tseslint.defineConfig([
   globalIgnores(["dist"]),
   {
     files: ["**/*.{ts,tsx}"],

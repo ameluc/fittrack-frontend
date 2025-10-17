@@ -1,19 +1,20 @@
-import { useEffect, useRef, useState, type FormEvent, type JSX } from "react";
-import { Link } from "react-router";
-import { activateButton, disableButton, validateEmail, validatePassword } from "../../utilitaries.ts";
-import { IconVisibility } from "../assets/Icons.tsx";
-import Button from "../components/Button.tsx";
-import InputField from "../components/Input.tsx";
+import type { FormEvent, JSX, RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
+import { NavLink } from "react-router";
+import { activateButton, disableButton, validateEmail, validatePassword } from "../utils";
+import { IconVisibility } from "../assets/icons";
+import Button from "../components/elements/button";
+import InputField from "../components/elements/input";
 
 
-export default function Login() : JSX.Element {
+export default function SignIn() : JSX.Element {
     const [ dataEmail, setDataEmail ] = useState<string>("");
     const [ dataPassword, setDataPassword ] = useState<string>("");
     const [ showPassword, setShowPassword ] = useState<boolean>(false);
-    const refButton = useRef<HTMLButtonElement>(null);
-    const refInputEmail = useRef<HTMLInputElement>(null);
-    const refInputPassword = useRef<HTMLInputElement>(null);
-    const styles = {
+    const refButton : RefObject<HTMLButtonElement | null> = useRef<HTMLButtonElement>(null);
+    const refInputEmail : RefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null);
+    const refInputPassword : RefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null);
+    const styles : Record<string, string> = {
         "label": "w-full h-auto pl-8 pt-4 pb-2 text-lg md:text-2xl",
         "input": "w-full h-auto rounded-lg px-2 py-2 bg-gray-50 placeholder:text-center placeholder:italic placeholder:text-xs placeholder-gray-400 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 dark:bg-gray-600 md:placeholder:text-sm md:text-base",
         "infoDiv": "w-full h-auto mx-auto my-2 rounded-lg py-2 bg-[#f9fafb] inset-shadow-sm flex flex-col items-center justify-center text-[12px] text-gray-400 md:w-fit",
@@ -25,8 +26,7 @@ export default function Login() : JSX.Element {
     function togglePassword() : void {
         setShowPassword(prev => !prev);
     }
-
-    function handleSubmit(event: FormEvent) : void {
+    function handleSubmit(event : FormEvent) : void {
         event.preventDefault();
         console.log({dataEmail, dataPassword});
     }
@@ -37,14 +37,14 @@ export default function Login() : JSX.Element {
         } else {
             disableButton(refInputEmail, refButton);
         }
-    }, [dataEmail]);
+    }, [ dataEmail ]);
     useEffect(() => {
         if (dataPassword.length !== 0 && validatePassword(dataPassword)) {
             activateButton(refInputPassword, refButton);
         } else {
             disableButton(refInputPassword, refButton);
         }
-    }, [dataPassword]);
+    }, [ dataPassword ]);
 
     return (<div className="min-h-screen">
         <div className="w-[90%] h-auto mx-auto my-12 px-4 rounded-3xl bg-gray-100 shadow-md flex flex-col items-center justify-center dark:bg-gray-700 md:w-xl lg:w-2xl">
@@ -52,15 +52,15 @@ export default function Login() : JSX.Element {
             <div className="w-[90%] h-[1px] mx-auto bg-gray-300" />
             <form className="w-full h-auto flex flex-col items-center justify-center" action="/submit" method="POST" onSubmit={handleSubmit} target="blank">
                 <label className={ styles.label } htmlFor="email">Email</label>
-                <InputField className={ styles.input } inputId="email" inputType="email" placeholder="Email (eg: abc@something.com)" entry={ dataEmail } onEntry={ (e) => {setDataEmail(e.target.value)} } required ref={ refInputEmail }/>
+                <InputField className={ styles.input } inputId="email" inputType="email" placeholder="Email (eg: abc@something.com)" entry={ dataEmail } onEntry={ (e) => {setDataEmail(e.target.value)} } required={ true } ref={ refInputEmail }/>
                 <label className={ styles.label } htmlFor="password">Password</label>
                 <div className="w-full h-auto rounded-lg bg-gray-50 flex flex-row items-center justify-between dark:bg-gray-600">
-                    <InputField className={ styles.input } inputId="password" inputType={ showPassword ? "text" : "password"} placeholder="Password" entry= { dataPassword } onEntry={(e) => { setDataPassword(e.target.value) }} required ref={ refInputPassword }/>
+                    <InputField className={ styles.input } inputId="password" inputType={ showPassword ? "text" : "password"} placeholder="Password" entry={ dataPassword } onEntry={(e) => { setDataPassword(e.target.value) }} required={ true } ref={ refInputPassword }/>
                     <Button className={ styles.buttonVisibility } buttonIcon={ <IconVisibility width="24" height="24" visible={ showPassword ? false : true } /> } buttonType="button" onClick={ togglePassword }/>
                 </div>
                 <Button className={ styles.buttonSubmit } buttonType="submit" buttonText="Log in" ref={ refButton }/>
             </form>
-            <Link className={ styles.authLink } to={"/signup"}>Don't have an account?</Link>
+            <NavLink className={ styles.authLink } to="/signup">Don't have an account?</NavLink>
         </div>
     </div>);
 }

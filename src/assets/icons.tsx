@@ -244,3 +244,43 @@ export function IconVisibility({ className, color, width="16", height="16", visi
         </svg>);
     }
 }
+
+export function IconArrowLeft({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width={ width }
+            height={ height }
+            className={ className }
+            role="img"
+            aria-label="arrow left icon">
+            <path
+                d="M15 18l-6-6 6-6"
+                fill="none"
+                stroke={ color ?? "currentColor" }
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round" />
+        </svg>
+    );
+}
+
+export function IconArrowRight({ className, color, width="16", height="16" } : IconProps) : JSX.Element {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width={ width }
+            height={ height }
+            className={ className }
+            role="img"
+            aria-label="arrow right icon">
+            <path
+                d="M9 6l6 6-6 6"
+                fill="none"
+                stroke={ color ?? "currentColor" }
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round" />
+        </svg>
+    );
+}

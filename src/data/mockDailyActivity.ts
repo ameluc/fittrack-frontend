@@ -1,5 +1,5 @@
 export const mockDailyActivity = {
-    "keys": ["steps"],
+    "keys": [ "minutesActive" ],
     "data": [
         { "date": "2025-09-20", "steps": 8200, "calories": 320, "minutesActive": 55 },
         { "date": "2025-09-21", "steps": 10450, "calories": 410, "minutesActive": 70 },
