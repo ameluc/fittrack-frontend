@@ -1,10 +1,10 @@
 import type { FormEvent, JSX, RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
-import { activateButton, disableButton, validateEmail, validatePassword } from "../utilitaries";
-import { IconVisibility } from "../assets/Icons.tsx";
-import Button from "../components/Button.tsx";
-import InputField from "../components/Input.tsx";
+import { activateButton, disableButton, validateEmail, validatePassword } from "../utils";
+import { IconVisibility } from "../assets/icons";
+import Button from "../components/elements/button";
+import InputField from "../components/elements/input";
 
 
 export default function SignIn() : JSX.Element {
@@ -26,7 +26,7 @@ export default function SignIn() : JSX.Element {
     function togglePassword() : void {
         setShowPassword(prev => !prev);
     }
-    function handleSubmit(event: FormEvent) : void {
+    function handleSubmit(event : FormEvent) : void {
         event.preventDefault();
         console.log({dataEmail, dataPassword});
     }
@@ -52,10 +52,10 @@ export default function SignIn() : JSX.Element {
             <div className="w-[90%] h-[1px] mx-auto bg-gray-300" />
             <form className="w-full h-auto flex flex-col items-center justify-center" action="/submit" method="POST" onSubmit={handleSubmit} target="blank">
                 <label className={ styles.label } htmlFor="email">Email</label>
-                <InputField className={ styles.input } inputId="email" inputType="email" placeholder="Email (eg: abc@something.com)" entry={ dataEmail } onEntry={ (e) => {setDataEmail(e.target.value)} } required ref={ refInputEmail }/>
+                <InputField className={ styles.input } inputId="email" inputType="email" placeholder="Email (eg: abc@something.com)" entry={ dataEmail } onEntry={ (e) => {setDataEmail(e.target.value)} } required={ true } ref={ refInputEmail }/>
                 <label className={ styles.label } htmlFor="password">Password</label>
                 <div className="w-full h-auto rounded-lg bg-gray-50 flex flex-row items-center justify-between dark:bg-gray-600">
-                    <InputField className={ styles.input } inputId="password" inputType={ showPassword ? "text" : "password"} placeholder="Password" entry= { dataPassword } onEntry={(e) => { setDataPassword(e.target.value) }} required ref={ refInputPassword }/>
+                    <InputField className={ styles.input } inputId="password" inputType={ showPassword ? "text" : "password"} placeholder="Password" entry={ dataPassword } onEntry={(e) => { setDataPassword(e.target.value) }} required={ true } ref={ refInputPassword }/>
                     <Button className={ styles.buttonVisibility } buttonIcon={ <IconVisibility width="24" height="24" visible={ showPassword ? false : true } /> } buttonType="button" onClick={ togglePassword }/>
                 </div>
                 <Button className={ styles.buttonSubmit } buttonType="submit" buttonText="Log in" ref={ refButton }/>

@@ -3,7 +3,7 @@ import App from "./app";
 import Dashboard from "./pages/dashboard";
 import Home from "./pages/home";
 import SingIn from "./pages/sign-in";
-import Signup from "./pages/sign-up";
+import SignUp from "./pages/sign-up";
 
 
 export const RoutesForLanding = createBrowserRouter([{
@@ -12,7 +12,7 @@ export const RoutesForLanding = createBrowserRouter([{
     children: [
         { index: true, Component: Home },
         { path: "singin", Component: SingIn },
-        { path: "signup", Component: Signup },
+        { path: "signup", Component: SignUp },
         { path: "dashboard", Component: Dashboard }
     ]
 }]);

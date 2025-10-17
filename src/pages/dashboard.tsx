@@ -1,23 +1,24 @@
 import type { JSX, RefObject } from "react";
 import type { PartialTheme } from "@nivo/theming";
+import type { RadialChart } from "../type";
 import { useEffect, useRef, useState } from "react";
 import { ResponsiveBar } from "@nivo/bar";
 import { ResponsiveRadialBar } from "@nivo/radial-bar";
-import { IconArrowLeft, IconArrowRight } from "../assets/Icons";
-import Button from "../components/Button";
+import { IconArrowLeft, IconArrowRight } from "../assets/icons";
+import Button from "../components/elements/button";
 import { mockDailyActivity } from "../data/mockDailyActivity";
 import { mockProgressOverviewOnCalories, mockProgressOverviewOnWeight, mockProgressOverviewOnWorkoutGoal } from "../data/mockProgressOverview";
 
 
-const mockUserProfile : Record<string, string | number> = {
-    "username": "Yazeel",
-    "age": 27,
-    "height": 175,
-    "weight": 75,
-    "preferredUnits": "metric"
-};
-
 export default function Dashboard() : JSX.Element {
+    const mockUserProfile : Record<string, string | number> = {
+        "username": "me",
+        "age": 20,
+        "height": 180,
+        "weight": 70,
+        "preferredUnits": "metric"
+    };
+
     const [ isMDView, setIsMDView ] = useState<boolean>(window.innerWidth >= 768);
     const [ isLGView, setIsLGView ] = useState<boolean>(window.innerWidth >= 1024);
     const [ isSticky, setIsSticky ] = useState<boolean>(false);
@@ -32,6 +33,10 @@ export default function Dashboard() : JSX.Element {
         "sticky": "z-10 sticky top-52 px-6 w-full h-auto bg-gray-100 dark:bg-gray-800 shadow-[8px_8px_16px_#c7c8ca] dark:shadow-[8px_8px_16px_#1a2330] flex flex-col md:flex-row items-center justify-center md:gap-2",
         "notSticky": "relative px-6 lg:px-20 w-full h-auto flex flex-col md:flex-row items-center justify-center md:gap-2",
         "action": "w-fit h-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 lg:cursor-pointer lg:p-2 lg:rounded-xl transition lg:delay-100 lg:duration-200 lg:ease-in-out lg:active:scale-90 lg:hover:scale-110"
+    };
+    const chartMargin : Record<string, Record<string, number>> = {
+        "bar": { "top": 40, "bottom": 100, "left": 120, "right": 40 },
+        "radial": { "top": 20, "bottom": 60, "left": 40, "right": 40 }
     };
     const chartStyles : PartialTheme = {
         // "background": "#ffffff",
@@ -143,44 +148,57 @@ export default function Dashboard() : JSX.Element {
             // "tableCellValue": {}
         }
     };
-    const chartMargin = { "top": 20, "bottom": 60, "left": 40, "right": 40 };
-    const radialCharts = [
-        (<ResponsiveRadialBar theme={ chartStyles } margin={ chartMargin } data={ mockProgressOverviewOnWeight } />),
-        (<ResponsiveRadialBar theme={ chartStyles } margin={ chartMargin } data={ mockProgressOverviewOnCalories } />),
-        (<ResponsiveRadialBar theme={ chartStyles } margin={ chartMargin } data={ mockProgressOverviewOnWorkoutGoal } />)
-    ];
-    const radialChartsTitles = [ "Weight", "Calories", "Workout" ];
-
-    function handlePreviousResponsiveRadialBarViews() : void {
-        if (currentRadialIndex === 0) {
-            setCurrentRadialIndex(radialCharts.length - 1);
-        } else {
-            setCurrentRadialIndex(prev => prev -= 1);
+    const radialCharts : Array<RadialChart> = [
+        {
+            "title": "Weight",
+            "element": (<ResponsiveRadialBar theme={ chartStyles } margin={ chartMargin.radial } data={ mockProgressOverviewOnWeight } /* key={ `mockProgressOverviewOnWeight-${0}` } */ />)
+        },
+        {
+            "title": "Workout",
+            "element": (<ResponsiveRadialBar theme={ chartStyles } margin={ chartMargin.radial } data={ mockProgressOverviewOnWorkoutGoal } /* key={ `mockProgressOverviewOnWorkoutGoal-${2}` } */ />)
+        },
+        {
+            "title": "Calories",
+            "element": (<ResponsiveRadialBar theme={ chartStyles } margin={ chartMargin.radial } data={ mockProgressOverviewOnCalories } /* key={ `mockProgressOverviewOnCalories-${1}` } */ />)
         }
-    }
-    function handleNextResponsiveRadialBarViews() : void {
-        if (currentRadialIndex === radialCharts.length - 1) {
-            setCurrentRadialIndex(0);
-        } else {
-            setCurrentRadialIndex(prev => prev += 1);
+    ];
+
+    function toggleRadialViews(view : "prev" | "next") : void {
+        if (view === "prev") {
+            if (currentRadialIndex === 0) {
+                setCurrentRadialIndex(radialCharts.length - 1);
+            } else {
+                setCurrentRadialIndex(prev => prev -= 1);
+            }
+        }
+        if (view === "next") {
+            if (currentRadialIndex === radialCharts.length - 1) {
+                setCurrentRadialIndex(0);
+            } else {
+                setCurrentRadialIndex(prev => prev += 1);
+            }
         }
     }
 
     useEffect(() => {
-        function handleScroll() {
-            const element = refTitleContainer.current;
+        function handleScroll() : void {
+            const element : HTMLElement | null = refTitleContainer.current;
             if (!element) return;
             if (!isLGView) setIsSticky(element.getBoundingClientRect().top <= 208);
         }
+
         window.addEventListener("scroll", handleScroll);
+
         return () => { window.removeEventListener("scroll", handleScroll) };
     });
     useEffect(() => {
-        function handleScreenSize() {
+        function handleScreenSize() : void {
             setIsLGView(window.innerWidth >= 1024);
             setIsMDView(window.innerWidth >= 768);
         }
+
         window.addEventListener("resize", handleScreenSize);
+
         return () => { window.removeEventListener("resize", handleScreenSize) };
     });
 
@@ -199,41 +217,39 @@ export default function Dashboard() : JSX.Element {
                         <div className={ styles.dataDiv }>
                             <div className="w-full h-full">
                                 <ResponsiveBar
-                                    margin={{ "top": 40, "bottom": 100, "left": 120, "right": 40 }}
-                                    // axisBottom={{ style: ticks }}
-                                    // axisLeft={{ style: ticks }}
+                                    margin={ chartMargin.bar }
+                                    // axisBottom={{ }}
+                                    // axisLeft={{ }}
                                     layout={ isMDView ? "horizontal" : "vertical" }
                                     data={ mockDailyActivity.data }
                                     theme={ chartStyles }
                                     indexBy={ "date" }
                                     keys={ mockDailyActivity.keys }
-                                    labelSkipWidth={8}
-                                    labelSkipHeight={8}
+                                    labelSkipWidth={ 12 }
+                                    labelSkipHeight={ 12 }
                                     groupMode="grouped"
-                                    tooltip={() => {
-                                        return (<>
-
-                                        </>);
-                                    }}
-                                    onClick={() => {
-                                        return (<>
-
-                                        </>);
-                                    }}
+                                    tooltip={ () =>
+                                        (<>
+                                        </>)
+                                    }
+                                    onClick={ () =>
+                                        (<>
+                                        </>)
+                                    }
                                 />
                             </div>
                         </div>
                     </section>
                     <section className={ styles.dataSection }>
                         <h2 className={ styles.dataH2 }>
-                            { radialChartsTitles[currentRadialIndex] } Progress Overview
+                            { radialCharts[currentRadialIndex].title } Progress Overview
                         </h2>
                         <div className={ styles.dataDiv }>
-                            <Button className={ styles.action } buttonType="button" buttonIcon={ <IconArrowLeft width="40" height="40" /> } onClick={handlePreviousResponsiveRadialBarViews} />
+                            <Button className={ styles.action } buttonType="button" buttonIcon={ <IconArrowLeft width="40" height="40" /> } onClick={ () => { toggleRadialViews("prev") } } />
                             <div className="w-full h-full">
-                                { radialCharts[currentRadialIndex] }
+                                { radialCharts[currentRadialIndex].element }
                             </div>
-                            <Button className={ styles.action } buttonType="button" buttonIcon={ <IconArrowRight width="40" height="40" /> } onClick={handleNextResponsiveRadialBarViews} />
+                            <Button className={ styles.action } buttonType="button" buttonIcon={ <IconArrowRight width="40" height="40" /> } onClick={ () => { toggleRadialViews("next") } } />
                         </div>
                     </section>
                 </div>
@@ -241,8 +257,8 @@ export default function Dashboard() : JSX.Element {
                     <h2 className="text-base md:text-lg lg:text-xl">Profile & Settings</h2>
                     <div className="w-full lg:w-fit h-auto flex flex-col items-center justify-center gap-8">
                         { mockUserProfile.username }
-                        <Button className={ styles.settingsButton + "lg:hover:border-blue-400" } buttonType="button" buttonText="Profile" />
-                        <Button className={ styles.settingsButton + "lg:hover:border-yellow-400" } buttonType="button" buttonText="Settings" />
+                        <Button className={ styles.settingsButton + " lg:hover:border-blue-400" } buttonType="button" buttonText="Profile" />
+                        <Button className={ styles.settingsButton + " lg:hover:border-yellow-400" } buttonType="button" buttonText="Settings" />
                     </div>
                 </section>
             </main>

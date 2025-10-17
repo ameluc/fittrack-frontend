@@ -6,4 +6,5 @@ import "./index.css";
 
 
 const element = document.getElementById("root");
+
 if (element) createRoot(element).render(<StrictMode><RouterProvider router={ RoutesForLanding } /></StrictMode>);

@@ -1,10 +1,10 @@
-import type { JSX, RefObject } from "react";
+import type { FormEvent, JSX, RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
-import { activateButton, disableButton, validateEmail, validatePassword } from "../utilitaries";
-import { IconVisibility } from "../assets/Icons.tsx";
-import Button from "../components/Button.tsx";
-import InputField from "../components/Input.tsx";
+import { activateButton, disableButton, validateEmail, validatePassword } from "../utils";
+import { IconVisibility } from "../assets/icons";
+import Button from "../components/elements/button";
+import InputField from "../components/elements/input";
 
 
 export default function SignUp() : JSX.Element {
@@ -29,7 +29,7 @@ export default function SignUp() : JSX.Element {
         "buttonVisibility": "w-fit h-fit mr-1 rounded-lg p-1 active:scale-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 md:p-1 md:text-1xl lg:cursor-pointer transition lg:delay-100 lg:duration-200 lg:ease-in-out lg:hover:bg-gray-300 lg:dark:hover:bg-gray-500"
     };
 
-    function handlePasswordsMatch(): JSX.Element {
+    function handlePasswordsMatch() : JSX.Element {
         if (dataPassword1.length !== 0 && dataPassword2.length !== 0 && !isPasswordMatch) {
             return (<div className={ styles.infoDiv + " px-8"}>
                 <p className="text-sm">Passwords don't match</p>
@@ -38,7 +38,7 @@ export default function SignUp() : JSX.Element {
             return (<></>);
         }
     }
-    function handlePasswordStrength(): JSX.Element {
+    function handlePasswordStrength() : JSX.Element {
         if (dataPassword1.length !== 0 && !isPasswordGood) {
             return (<div className={ styles.infoDiv }>
                 <p className="mt-1 mb-2 text-sm">Requirements:</p>
@@ -58,7 +58,7 @@ export default function SignUp() : JSX.Element {
     function togglePassword() : void {
         setShowPassword(prev => !prev);
     }
-    function handleSubmit(event: React.FormEvent) : void {
+    function handleSubmit(event : FormEvent) : void {
         event.preventDefault();
         console.log({ dataName, dataEmail, dataPassword1, dataPassword2 });
     }
@@ -78,7 +78,7 @@ export default function SignUp() : JSX.Element {
             setIsPasswordGood(validatePassword(dataPassword1));
             activateButton(refInputPassword1, refButton);
         }
-    }, [dataPassword1]);
+    }, [ dataPassword1 ]);
     useEffect(() => {
         function checkPasswordMatch() {
             return dataPassword1 === dataPassword2
@@ -99,21 +99,21 @@ export default function SignUp() : JSX.Element {
             <div className="w-[90%] h-[1px] mx-auto bg-gray-300" />
             <form className="w-full h-auto flex flex-col items-center justify-center" action="/submit" method="POST" onSubmit={handleSubmit} target="blank">
                 <label className={ styles.label } htmlFor="name">Name</label>
-                <InputField className={ styles.input } inputId="name" inputType="text" placeholder="Name" entry={ dataName } onEntry={ (e) => {setDataName(e.target.value)} } required ref={ refInputName }/>
+                <InputField className={ styles.input } inputId="name" inputType="text" placeholder="Name" entry={ dataName } onEntry={ (e) => {setDataName(e.target.value)} } required={ true } ref={ refInputName }/>
                 <label className={ styles.label } htmlFor="email">Email</label>
-                <InputField className={ styles.input } inputId="email" inputType="email" placeholder="Email (eg: abc@something.com)" entry={ dataEmail } onEntry={ (e) => {setDataEmail(e.target.value)} } required ref={ refInputEmail }/>
+                <InputField className={ styles.input } inputId="email" inputType="email" placeholder="Email (eg: abc@something.com)" entry={ dataEmail } onEntry={ (e) => {setDataEmail(e.target.value)} } required={ true } ref={ refInputEmail }/>
                 <label className={ styles.label } htmlFor="password">Password</label>
                 <div className="w-full h-auto rounded-lg bg-gray-50 flex flex-row items-center justify-between dark:bg-gray-600">
-                    <InputField className={ styles.input } inputId="password" inputType={ showPassword ? "text" : "password"} placeholder="Password" entry= { dataPassword1 } onEntry={ (e) => {setDataPassword1(e.target.value)} } required ref={ refInputPassword1 } />
+                    <InputField className={ styles.input } inputId="password" inputType={ showPassword ? "text" : "password"} placeholder="Password" entry={ dataPassword1 } onEntry={ (e) => {setDataPassword1(e.target.value)} } required={ true } ref={ refInputPassword1 } />
                     <Button className={ styles.buttonVisibility } buttonIcon={ <IconVisibility width="24" height="24" visible={ showPassword ? false : true } /> } buttonType="button" onClick={ togglePassword }/>
                 </div>
                 { handlePasswordStrength() }
                 <label className={ styles.label } htmlFor="password">Confirm Password</label>
-                <InputField className={ styles.input } inputId="password" inputType={ showPassword ? "text" : "password"} placeholder="Password" entry= { dataPassword2 } onEntry={ (e) => {setDataPassword2(e.target.value)} } required ref={ refInputPassword2 }/>
+                <InputField className={ styles.input } inputId="password" inputType={ showPassword ? "text" : "password"} placeholder="Password" entry={ dataPassword2 } onEntry={ (e) => {setDataPassword2(e.target.value)} } required={ true } ref={ refInputPassword2 }/>
                 { handlePasswordsMatch() }
                 <Button className={ styles.buttonSubmit } buttonId="submit-button" buttonType="submit" buttonText="Sign up" ref={ refButton }/>
             </form>
-            <NavLink className={ styles.authLink } to={ "/login" }>Already have an account?</NavLink>
+            <NavLink className={ styles.authLink } to="/signin">Already have an account?</NavLink>
         </div>
     </div>);
 }

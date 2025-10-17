@@ -1,24 +1,30 @@
-import { useEffect, useState, type JSX } from "react";
+import type { JSX } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
-import SectionNavBar from "./components/SectionNavBar";
+import SectionNavBar from "./components/sections/nav-bar";
+import SectionFooter from "./components/sections/footer";
 
 
 export default function App() : JSX.Element {
     const [ isLGView, setIsLGView ] = useState<boolean>(window.innerWidth >= 1024);
-    const styles = {
+    const styles : Record<string, string> = {
         "footer": "w-full h-auto px-6 py-12 flex flex-col items-center justify-center text-sm",
         "header": isLGView ? "" : "z-11 sticky top-0 w-full h-auto px-4 pt-4 pb-10 bg-gray-100 dark:bg-gray-800 flex items-center justify-center lg:fixed lg:top-24 lg:left-8",
         "link": "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
     };
+    const footerLinks = [
+        { href: "#", text: "Privacy Policy" },
+        { href: "#", text: "Terms of Service" }
+    ]
 
     useEffect(() => {
-        function handleScreenSize() : void {
+        function handleView() : void {
             setIsLGView(window.innerWidth >= 1024);
         }
 
-        window.addEventListener("resize", handleScreenSize);
+        window.addEventListener("resize", handleView);
 
-        return () => { window.removeEventListener("resize", handleScreenSize) };
+        return () => { window.removeEventListener("resize", handleView) };
     });
 
     return (<>
@@ -28,13 +34,6 @@ export default function App() : JSX.Element {
         <main>
             <Outlet />
         </main>
-        <footer className={ styles.footer }>
-            <p className="mb-4">&copy; 2025 FitTrack. All rights reserved.</p>
-            <ul className="my-4 flex flex-row items-center justify-center gap-4">
-                <li><a className={ styles.link } href="#" target="blank">Privacy Policy</a></li>
-                <li><a className={ styles.link } href="#" target="blank">Terms of Service</a></li>
-            </ul>
-            <img className="w-[100px] h-auto mt-4 rounded-lg" src="https://placehold.co/100x50?text=FitTrack+Logo" alt="FitTrack logo" />
-        </footer>
+        <SectionFooter className={ styles.footer } sectionImgSrc="https://placehold.co/100x50?text=FitTrack+Logo" sectionText="&copy; 2025 FitTrack. All rights reserved." sectionLinks={ footerLinks } />
     </>);
 }

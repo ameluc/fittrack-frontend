@@ -1,17 +1,14 @@
-import { useEffect, useState, type JSX } from "react";
+import type { JSX } from "react";
+import type { SectionProps } from "../../type";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router";
-import Button from "./Button";
-import Helper from "./Helper";
-import { setUiMode } from "../utilitaries";
-import { IconDownload, IconFeature, IconLogin, IconPricing, IconTestimonial, IconUiDark, IconUiBright } from "../assets/Icons";
+import Button from "../elements/button";
+import Helper from "../elements/helper";
+import { setUiMode } from "../../utils";
+import { IconDownload, IconFeature, IconLogin, IconPricing, IconTestimonial, IconUiDark, IconUiBright } from "../../assets/icons";
 
 
-interface SectionProps {
-    className?: string,
-    navBarText?: string
-};
-
-export default function SectionNavBar({ className="" } : SectionProps) : JSX.Element {
+export default function SectionNavBar( { className="" } : SectionProps ) : JSX.Element {
     const [ isViewMD, setIsViewMD ] = useState<boolean>(window.innerWidth >= 768);
     const [ theme, setTheme ] = useState<string>(() => localStorage.getItem("theme") ?? "light");
     const themeIcon : JSX.Element = theme === "dark" ? <IconUiBright width="32" height="32" /> : <IconUiDark width="32" height="32" />
